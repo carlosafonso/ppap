@@ -3,5 +3,5 @@
 namespace Ppap\Parsers;
 
 abstract class Parser {
-	public abstract function parse($address);
+	public abstract function parse($raw);
 }

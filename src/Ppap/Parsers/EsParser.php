@@ -42,6 +42,11 @@ class EsParser extends Parser {
 				$address->wayType = 'CL';
 			}
 			
+			if (preg_match('/\s+(?:NUMERO|NUM|NRO|NO|N)\.*\s*$/', $wayName, $n))
+			{
+				$wayName = str_replace($n[0], '', $wayName);
+			}
+
 			$address->wayName = $wayName;
 			
 			$raw = str_replace($m[0], '', $raw);
@@ -72,10 +77,10 @@ class EsParser extends Parser {
 			$address->town = $town;
 
 			// province, only if not found already
-			if ($address->province !== null)
+			if ($address->province !== null && count($m) >= 3)
 			{
 				$province = trim($m[3]);
-				// ...
+				$raw = str_replace($m[2], '', $raw);
 			}
 
 			$raw = str_replace($m[0], '', $raw);

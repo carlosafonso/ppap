@@ -11,3 +11,10 @@ before_script:
  - travis_retry composer install --prefer-source --no-interaction --dev
 
 script: vendor/bin/phpunit --verbose
+
+addons:
+  code_climate:
+    repo_token: 99778bd3c2c252a3e7baa14f911825a1b1733779fee2c71b9251b63aac111eb1
+
+after_script:
+ - vendor/bin/test-reporter
